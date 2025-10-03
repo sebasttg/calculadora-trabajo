@@ -1,0 +1,115 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .contenedor {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .seccion-imagen {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imagen-contenedor {
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .icono-calculadora {
+            font-size: 8rem;
+            margin-bottom: 20px;
+        }
+
+        .imagen-contenedor h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .seccion-formulario {
+            padding: 40px;
+        }
+
+        .seccion-formulario h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .seccion-formulario p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .grupo-campo {
+            margin-bottom: 20px;
+        }
+
+        .grupo-campo input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .grupo-campo input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .boton-ingresar {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .boton-ingresar:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .contenedor {
+                grid-template-columns: 1fr;
+            }
+
+            .seccion-imagen {
+                padding: 30px;
+            }
+
+            .icono-calculadora {
+                font-size: 5rem;
+            }
+        }
