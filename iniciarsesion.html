@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Calculadora</title>
+    <link rel="stylesheet" href="estilos4.css">
+
+</head>
+<body>
+    <form action="calculadora.html" id="formulario-login">
+        <div class="contenedor">
+            <div class="seccion-imagen">
+                <div class="imagen-contenedor">
+                    <div class="icono-calculadora">💸</div>
+                    <h3>Calculadora Monetaria</h3>
+                    <p>Herramienta avanzada para calculos matematicos</p>
+                </div>
+            </div>
+            <div class="seccion-formulario">
+                <h2>Acceso</h2>
+                <p>Ingrese sus credenciales para continuar</p>
+
+                <div class="grupo-campo">
+                    <input type="text" class="campo" id="usuario" placeholder="Nombre de Usuario" required>
+                </div>
+                <div class="grupo-campo">
+                    <input type="password" class="campo" id="contrasena" placeholder="Contraseña" required>
+                </div>
+                <button type="button" class="boton-ingresar" onclick="verificarUsuario()">Ingresar</button>
+            </div>
+        </div>
+    </form>
+<script src="logica3.js"></script>
+
+</body>
+</html>
