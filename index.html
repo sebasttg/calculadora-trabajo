@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculadora Financiera Científica</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header>
+  <div class="envoltorio">
+    <div class="marca">Calculadora Financiera Científica</div>
+    <nav>
+      <a href="#inversion">Inversión</a>
+      <a href="#ahorro">Ahorro</a>
+      <a href="#riesgo">Riesgo</a>
+      <a href="#proyeccion">Proyección</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Tu dinero, tus decisiones</h1>
+  <p>Simula <strong>inversiones</strong>, calcula tu <strong>ahorro</strong>, mide <strong>riesgos</strong> con Monte Carlo y
+     crea <strong>proyecciones</strong> con aportes. Todo en una sola página.</p>
+</section>
+
+<main class="rejilla">
+
+
+  <section id="inversion" class="tarjeta">
+    <h2>📈 Inversión (interés compuesto)</h2>
+    <small>Calcula cuánto tendrás al final según monto, tasa y frecuencia de capitalización.</small>
+
+    <div class="fila">
+      <div class="columna-4">
+        <label>Monto inicial</label>
+        <input id="inv_monto" type="number" min="0" placeholder="Ej: 1,000,000" />
+      </div>
+      <div class="columna-4">
+        <label>Tasa anual (%)</label>
+        <input id="inv_tasa" type="number" step="0.01" placeholder="Ej: 10" />
+      </div>
+      <div class="columna-4">
+        <label>Años</label>
+        <input id="inv_anios" type="number" min="0" step="1" placeholder="Ej: 5" />
+      </div>
+      <div class="columna-6">
+        <label>Capitalización</label>
+        <select id="inv_frecuencia">
+          <option value="1">Anual</option>
+          <option value="2">Semestral</option>
+          <option value="4">Trimestral</option>
+          <option value="12" selected>Mensual</option>
+          <option value="365">Diaria</option>
+        </select>
+      </div>
+      <div class="columna-6">
+        <button class="boton" onclick="calcularInversion()">Calcular inversión</button>
+      </div>
+      <div class="columna-12">
+        <div id="inv_resultado" class="estadistica">Ingresa los datos y calcula.</div>
+      </div>
+      <div class="columna-12">
+        <canvas id="inv_grafico" height="130"></canvas>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="ahorro" class="tarjeta">
+    <h2>💰 Ahorro con meta</h2>
+    <small>Controla tu progreso hacia una meta específica.</small>
+
+    <div class="fila">
+      <div class="columna-6">
+        <label>Monto ahorrado</label>
+        <input id="ah_actual" type="number" min="0" placeholder="Ej: 300,000" />
+      </div>
+      <div class="columna-6">
+        <label>Meta</label>
+        <input id="ah_meta" type="number" min="0" placeholder="Ej: 1,000,000" />
+      </div>
+      <div class="columna-6">
+        <button class="boton secundaria" onclick="calcularAhorro()">Calcular progreso</button>
+      </div>
+      <div class="columna-12">
+        <div id="ah_resultado" class="estadistica">Tu progreso aparecerá aquí.</div>
+      </div>
+      <div class="columna-12">
+        <canvas id="ah_grafico" height="130"></canvas>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="riesgo" class="tarjeta">
+    <h2>⚠️ Riesgo (Monte Carlo)</h2>
+    <small>Simula miles de escenarios basados en un rendimiento esperado y una volatilidad anual.</small>
+
+    <div class="fila">
+      <div class="columna-4">
+        <label>Capital</label>
+        <input id="r_capital" type="number" min="0" placeholder="Ej: 2,000,000" />
+      </div>
+      <div class="columna-4">
+        <label>Rendimiento esperado anual (%)</label>
+        <input id="r_mu" type="number" step="0.1" placeholder="Ej: 8" />
+      </div>
+      <div class="columna-4">
+        <label>Volatilidad anual (%)</label>
+        <input id="r_sigma" type="number" step="0.1" placeholder="Ej: 20" />
+      </div>
+      <div class="columna-4">
+        <label>Horizonte (años)</label>
+        <input id="r_anios" type="number" min="1" step="1" value="1" />
+      </div>
+      <div class="columna-4">
+        <label>Nº simulaciones</label>
+        <input id="r_n" type="number" min="100" step="100" value="2000" />
+      </div>
+      <div class="columna-4">
+        <button class="boton" onclick="simularRiesgo()">Simular riesgo</button>
+      </div>
+      <div class="columna-12">
+        <div id="r_resultado" class="estadistica">Resultados de VaR y escenarios aquí.</div>
+      </div>
+      <div class="columna-12">
+        <canvas id="r_grafico" height="130"></canvas>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="proyeccion" class="tarjeta">
+    <h2>🔮 Proyección (aportes + interés compuesto)</h2>
+    <small>Proyecta el crecimiento de tu capital con aportes mensuales y una tasa anual.</small>
+
+    <div class="fila">
+      <div class="columna-3">
+        <label>Capital inicial</label>
+        <input id="pr_capital" type="number" min="0" placeholder="Ej: 500,000" />
+      </div>
+      <div class="columna-3">
+        <label>Aporte mensual</label>
+        <input id="pr_aporte" type="number" min="0" placeholder="Ej: 200,000" />
+      </div>
+      <div class="columna-3">
+        <label>Tasa anual (%)</label>
+        <input id="pr_tasa" type="number" step="0.01" placeholder="Ej: 10" />
+      </div>
+      <div class="columna-3">
+        <label>Años</label>
+        <input id="pr_anios" type="number" min="0" step="1" placeholder="Ej: 5" />
+      </div>
+      <div class="columna-6">
+        <button class="boton secundaria" onclick="calcularProyeccion()">Calcular proyección</button>
+      </div>
+      <div class="columna-12">
+        <div id="pr_resultado" class="estadistica">La curva de crecimiento aparecerá debajo.</div>
+      </div>
+      <div class="columna-12">
+        <canvas id="pr_grafico" height="130"></canvas>
+      </div>
+    </div>
+  </section>
+
+
+
+</main>
+  <button onclick="window.location.href='calculadora.html'" id="btn3">Calculadora cientifica</button>
+
+<script src="logica.js"></script>
+</body>
+</html>
